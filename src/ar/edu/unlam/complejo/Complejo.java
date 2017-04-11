@@ -9,6 +9,9 @@ public class Complejo {
 	public Complejo(int real, int imaginario) {
 		this.real = real;
 		this.imaginario = imaginario;
+		if (this.imaginario < 0) {
+			this.signo = false;
+		}
 	}
 
 	public Integer getReal() {
