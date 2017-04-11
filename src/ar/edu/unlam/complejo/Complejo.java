@@ -4,9 +4,10 @@ public class Complejo {
 
 	private Integer real;
 	private Integer imaginario;
+	private Boolean signo = true;
 
-	public Complejo(int real, int imaginario) { 
-		this.real = real; 
+	public Complejo(int real, int imaginario) {
+		this.real = real;
 		this.imaginario = imaginario;
 	}
 
@@ -34,6 +35,9 @@ public class Complejo {
 	public void suma(Complejo obj) {
 		this.real += obj.real;
 		this.imaginario += obj.imaginario;
+		if (this.imaginario < 0) {
+			this.signo = false;
+		}
 	}
 
 	/**
@@ -53,6 +57,9 @@ public class Complejo {
 	public void resta(Complejo obj) {
 		this.real -= obj.real;
 		this.imaginario -= obj.imaginario;
+		if (this.imaginario < 0) {
+			this.signo = false;
+		}
 	}
 
 	/**
@@ -72,6 +79,9 @@ public class Complejo {
 	public void multiplicacion(Complejo obj) {
 		this.real = (this.real * obj.real) - (this.imaginario * obj.imaginario);
 		this.imaginario = (this.real * obj.imaginario) + (this.imaginario * obj.real);
+		if (this.imaginario < 0) {
+			this.signo = false;
+		}
 	}
 
 	/**
@@ -115,7 +125,7 @@ public class Complejo {
 	}
 
 	public String toString() {
-		return "(" + this.real + " + " + this.imaginario + "i)";
+		return "(" + this.real + (this.signo == true ? " + " : " - ") + Math.abs(this.imaginario) + "i)";
 	}
 
 	public Complejo clone() {
